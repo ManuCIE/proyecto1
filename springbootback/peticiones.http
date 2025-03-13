@@ -1,0 +1,6 @@
+http://localhost:8080/webapi/Ordenador
+
+######
+
+GET http://localhost:8080/webapi/ordenador
+######
