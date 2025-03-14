@@ -1,0 +1,44 @@
+<div>
+    <div class="text-end">
+        Filtrado por precio ⇒
+        desde:<input type="text" [(ngModel)]="minprice" name="minprice" />
+        hasta:<input type="text" [(ngModel)]="maxprice" name="minprice" />
+        <input type="button" value="filtrar" (click)="buscarTodosPorRangoPrecio()" />
+        <input type="button" value="ver todos" (click)="buscarTodos()" />
+    </div>
+    <div>
+        <table class="table text-center p3">
+            <thead class="table-info">
+                <tr>
+                    <th>MARCA</th>
+                    <th>MODELO</th>
+                    <th>PRECIO</th>
+                    <th>NUMSERIE</th>
+                    <th>ELIMINAR</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for(ordenador of listaOrdenador; track ordenador.numserie) {
+                <tr>
+                    <td>{{ordenador.modelo}}</td>
+                    <td>{{ordenador.marca}}</td>
+                    <td>{{ordenador.precio}} </td>
+                    <td>{{ordenador.numserie}}</td>
+                    <td> <input type="button" class="btn btn-danger" id="borrar" value="X" (click)="borrar(ordenador)">
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+        <div class="text-center p-3">
+            <button (click)="buscarTodosPags(-1)">Anterior</button>
+            <span let> Página {{numPagina + 1}} </span>
+            <button (click)="buscarTodosPags(1)">Siguiente</button>
+        </div>
+
+    </div>
+
+    <div class="text-center p-3">
+        <a routerLink="/formularioordenador">ir a formulario</a>
+    </div>
+</div>

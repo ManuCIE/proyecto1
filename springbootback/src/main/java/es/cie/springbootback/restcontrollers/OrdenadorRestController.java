@@ -41,7 +41,7 @@ public class OrdenadorRestController {
 
     // BORRAR ORDENADOR
     @DeleteMapping("/{numserie}")
-    @CrossOrigin(origins = "http://localhost:8080")
+    @CrossOrigin(origins = "http://localhost:4200")
     public void borrar(@PathVariable String numserie) {
         ordenadorRepository.borrar(numserie);
     }

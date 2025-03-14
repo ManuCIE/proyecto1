@@ -55,4 +55,9 @@ public class OrdenadorRepositoryJDBC implements OrdenadorRepository {
                 minprice, maxprice);
     }
 
+    @Override
+    public List<Ordenador> buscarTodosPags(int inicio, int items) {
+        return plantilla.query("select * from ordenador limit ?, ?", new OrdenadorRowMapper(), inicio, items);
+    }
+
 }

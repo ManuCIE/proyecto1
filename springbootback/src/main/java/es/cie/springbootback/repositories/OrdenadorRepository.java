@@ -8,6 +8,8 @@ public interface OrdenadorRepository {
 
     List<Ordenador> buscarTodos();
 
+    List<Ordenador> buscarTodosPags(int inicio, int items);
+
     List<Ordenador> buscarPorModelo(String modelo);
 
     List<Ordenador> buscarPorMarca(String marca);

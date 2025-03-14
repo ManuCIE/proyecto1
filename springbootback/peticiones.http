@@ -2,5 +2,31 @@ http://localhost:8080/webapi/Ordenador
 
 ######
 
-GET http://localhost:8080/webapi/ordenador
+GET http://localhost:8080/webapi/Ordenador
+######
+
+
+GET http://localhost:8080/webapi/Ordenador?modelo=HP
+######
+
+GET http://localhost:8080/webapi/Ordenador?marca=Mars G
+
+######
+
+POST http://localhost:8080/webapi/Ordenador
+content-type: application/json
+
+{
+    "modelo": "Gaming Forcex",
+    "marca": "Trinity",
+    "precio": "1329.95",
+    "numserie":"GX-47520Y" 
+}
+######
+
+DELETE http://localhost:8080/webapi/Ordenador/numserie/GT-75925T
+######
+
+GET http://localhost:8080/webapi/Ordenador?inicio=1?items=5
+
 ######
