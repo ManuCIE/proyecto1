@@ -56,8 +56,9 @@ public class OrdenadorRepositoryJDBC implements OrdenadorRepository {
     }
 
     @Override
-    public List<Ordenador> buscarTodosPags(int inicio, int items) {
-        return plantilla.query("select * from ordenador limit ?, ?", new OrdenadorRowMapper(), inicio, items);
+    public List<Ordenador> buscarTodosPags(int items, int inicio) {
+        String sql = "select * from ordenador LIMIT ? OFFSET ?";
+        return plantilla.query(sql, new OrdenadorRowMapper(), inicio, items);
     }
 
 }

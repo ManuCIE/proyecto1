@@ -18,7 +18,7 @@ import es.cie.springbootback.negocio.Ordenador;
 import es.cie.springbootback.repositories.OrdenadorRepository;
 
 @RestController
-@RequestMapping("/webapi/Ordenador")
+@RequestMapping("/webapi/ordenador")
 public class OrdenadorRestController {
 
     @Autowired
@@ -29,6 +29,7 @@ public class OrdenadorRestController {
     @GetMapping
     @CrossOrigin(origins = "http://localhost:4200")
     public List<Ordenador> buscarTodos() {
+        System.out.println("buscar todos2");
         return ordenadorRepository.buscarTodos();
     }
 
@@ -68,6 +69,14 @@ public class OrdenadorRestController {
     @CrossOrigin(origins = "http://localhost:4200")
     public List<Ordenador> buscarTodosPorRangoPrecio(@RequestParam int minprice, @RequestParam int maxprice) {
         return ordenadorRepository.buscarTodosPorRangoPrecio(minprice, maxprice);
+    }
+
+    @GetMapping(params = { "inicio", "items" })
+    @CrossOrigin(origins = "http://localhost:4200")
+
+    public List<Ordenador> buscarTodosPags(@RequestParam int inicio, @RequestParam int items) {
+        System.out.println("llega por aqui");
+        return ordenadorRepository.buscarTodosPags(inicio, items);
     }
 
 }
