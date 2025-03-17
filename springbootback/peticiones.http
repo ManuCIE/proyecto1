@@ -1,19 +1,24 @@
-http://localhost:8080/webapi/Ordenador
+http://localhost:8080/webapi/ordenador
 
 ######
 
-GET http://localhost:8080/webapi/Ordenador
+
+
+GET http://localhost:8080/webapi/ordenador?inicio=1&items=5
+
+###
+GET http://localhost:8080/webapi/ordenador
 ######
 
 
-GET http://localhost:8080/webapi/Ordenador?modelo=HP
+GET http://localhost:8080/webapi/ordenador?modelo=HP
 ######
 
-GET http://localhost:8080/webapi/Ordenador?marca=Mars G
+GET http://localhost:8080/webapi/ordenador?marca=Mars G
 
 ######
 
-POST http://localhost:8080/webapi/Ordenador
+POST http://localhost:8080/webapi/ordenador
 content-type: application/json
 
 {
@@ -24,9 +29,9 @@ content-type: application/json
 }
 ######
 
-DELETE http://localhost:8080/webapi/Ordenador/numserie/GT-75925T
+DELETE http://localhost:8080/webapi/ordenador/numserie/GT-75925T
 ######
 
-GET http://localhost:8080/webapi/Ordenador?inicio=1?items=5
+GET http://localhost:8080/webapi/ordenador?inicio=1?items=5
 
 ######
