@@ -3,12 +3,13 @@ import { OrdenadorService } from '../ordenador.service';
 import { Ordenador } from '../ordenador';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { CommonModule, NgFor } from '@angular/common';
 
 
 
 @Component({
   selector: 'app-lista-ordenadores',
-  imports: [RouterLink, FormsModule],
+  imports: [RouterLink, FormsModule, NgFor, CommonModule],
   templateUrl: './lista-ordenadores.component.html',
   styleUrl: './lista-ordenadores.component.scss'
 })
@@ -17,14 +18,15 @@ export class ListaOrdenadoresComponent {
   minprice: number = 0;
   maxprice: number = 0;
   listaOrdenador: Ordenador[] = [];
-  numPagina: number = 0;
+  numPagina: number = 1;
+  items: number = 5;
+
 
   constructor(private ordenadorService: OrdenadorService) {
-
-    ordenadorService.buscarTodos().subscribe((datos) => {
+    console.log("pasa1");
+    this.ordenadorService.buscarTodosPags(this.numPagina, this.items).subscribe((datos) => {
 
       this.listaOrdenador = datos;
-
     })
   }
 
@@ -57,15 +59,20 @@ export class ListaOrdenadoresComponent {
     })
   }
 
-  buscarTodosPags(avance: number) {
+  buscarTodosPags(numPag: number) {
 
-    this.numPagina + avance;
-    this.ordenadorService.buscarTodosPags(5 * this.numPagina, 5).subscribe((datos) => {
+    if (this.numPagina == 1) {
 
-      this.listaOrdenador = datos;
+      this.ordenadorService.buscarTodosPags(this.items, this.numPagina).subscribe((datos) => {
 
+        this.listaOrdenador = datos;
+      })
 
-    })
+    } else {
+      console.log("llega en javascript");
+      this.ordenadorService.buscarTodosPags(this.items, (this.numPagina - 1) * 5);
+    }
+
   }
 
 }

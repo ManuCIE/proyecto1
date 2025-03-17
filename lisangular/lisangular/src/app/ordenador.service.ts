@@ -12,43 +12,38 @@ export class OrdenadorService {
 
   public buscarTodos(): Observable<Ordenador[]> {
 
-    return this.httpClient.get<Ordenador[]>("http://localhost:8080/webapi/Ordenador");
-
-
+    return this.httpClient.get<Ordenador[]>("http://localhost:8080/webapi/ordenador");
   }
 
   public buscarTodosPorMarca(): Observable<Ordenador[]> {
 
-    return this.httpClient.get<Ordenador[]>("http://localhost:8080/webapi/Ordenador?marca=");
-
+    return this.httpClient.get<Ordenador[]>("http://localhost:8080/webapi/ordenador?marca=");
   }
 
   public insertar(ordenador: Ordenador): Observable<Ordenador> {
-    return this.httpClient.post<Ordenador>("http://localhost:8080/webapi/Ordenador", ordenador)
-
-
+    return this.httpClient.post<Ordenador>("http://localhost:8080/webapi/ordenador", ordenador)
   }
 
   public buscarUno(numserie: String): Observable<Ordenador> {
-    return this.httpClient.get<Ordenador>(`http://localhost:8080/webapi/Ordenador/${numserie}`);
+    return this.httpClient.get<Ordenador>(`http://localhost:8080/webapi/ordenador/${numserie}`);
 
   }
 
   public borrar(ordenador: Ordenador): Observable<Ordenador> {
-    return this.httpClient.delete<Ordenador>(`http://localhost:8080/webapi/Ordenador/${ordenador.numserie}`)
+    return this.httpClient.delete<Ordenador>(`http://localhost:8080/webapi/ordenador/${ordenador.numserie}`)
   }
 
   public buscarTodosPorRangoPrecio(minprice: number, maxprice: number): Observable<Ordenador[]> {
     const params = new HttpParams()
       .set('minprice', minprice)
       .set('maxprice', maxprice);
-    return this.httpClient.get<Ordenador[]>(`http://localhost:8080/webapi/Ordenador`, { params });
+    return this.httpClient.get<Ordenador[]>(`http://localhost:8080/webapi/ordenador`, { params });
 
   }
 
-  public buscarTodosPags(inicio: number, items: number) {
+  public buscarTodosPags(numPag: number, items: number) {
 
-    return this.httpClient.get<Ordenador[]>(`http://localhost:8080/webapi/Ordenador?inicio=` + inicio + `?items=` + items);
+    return this.httpClient.get<Ordenador[]>(`http://localhost:8080/webapi/ordenador?inicio=${numPag}&?items=${items}`);
   }
 
 }

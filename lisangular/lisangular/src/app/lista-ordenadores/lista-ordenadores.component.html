@@ -1,14 +1,14 @@
 <div>
-    <div class="text-end">
+    <div class="text-end p-3">
         Filtrado por precio ⇒
-        desde:<input type="text" [(ngModel)]="minprice" name="minprice" />
-        hasta:<input type="text" [(ngModel)]="maxprice" name="minprice" />
-        <input type="button" value="filtrar" (click)="buscarTodosPorRangoPrecio()" />
-        <input type="button" value="ver todos" (click)="buscarTodos()" />
+        Desde: <input type="text" [(ngModel)]="minprice" name="minprice" />
+        Hasta: <input type="text" [(ngModel)]="maxprice" name="minprice" />
+        <input type="button" class="btn btn-secondary" value="filtrar" (click)="buscarTodosPorRangoPrecio()" />
+        <input type="button" class="btn btn-primary" value="ver todos" (click)="buscarTodos()" />
     </div>
     <div>
-        <table class="table text-center p3">
-            <thead class="table-info">
+        <table class="table table-bordered text-center p3">
+            <thead class="table-warning">
                 <tr>
                     <th>MARCA</th>
                     <th>MODELO</th>
@@ -17,28 +17,30 @@
                     <th>ELIMINAR</th>
                 </tr>
             </thead>
-            <tbody>
-                @for(ordenador of listaOrdenador; track ordenador.numserie) {
-                <tr>
+            <tbody class="table-light">
+                <tr *ngFor="let ordenador of listaOrdenador">
                     <td>{{ordenador.modelo}}</td>
                     <td>{{ordenador.marca}}</td>
-                    <td>{{ordenador.precio}} </td>
+                    <td>{{ordenador.precio}} €</td>
                     <td>{{ordenador.numserie}}</td>
                     <td> <input type="button" class="btn btn-danger" id="borrar" value="X" (click)="borrar(ordenador)">
                     </td>
                 </tr>
-                }
+
             </tbody>
         </table>
-        <div class="text-center p-3">
-            <button (click)="buscarTodosPags(-1)">Anterior</button>
-            <span let> Página {{numPagina + 1}} </span>
-            <button (click)="buscarTodosPags(1)">Siguiente</button>
+        <div class="text-center p3">
+            <small>Paginado de 5 en 5 items</small><br>
+            <button class="btn btn-outline-danger p3" (click)="buscarTodosPags(numPagina - 1)"
+                [disabled]="numPagina === 1">Anterior</button>
+            <span> PÁGINA {{numPagina}} </span>
+            <button class="btn btn-outline-success p3" (click)="buscarTodosPags(numPagina + 1)">Siguiente</button>
+            <br> <small>(Esta petición de paginado SÍ funciona en springboot)</small>
         </div>
 
     </div>
 
     <div class="text-center p-3">
-        <a routerLink="/formularioordenador">ir a formulario</a>
+        <a routerLink="/formularioordenador">Nuevo 🖉</a>
     </div>
 </div>
